@@ -9,8 +9,11 @@ library(cowplot)
 
 ####Figure 1####
 #Read in data
-North<-read.csv("NHemisphereTemp.csv")
-South<-read.csv("SHemisphereTemp.csv")
+North.URL <- getURL("https://raw.githubusercontent.com/Monsauce/Rewiring-a-changing-world/master/NHemisphereTemp.csv")
+North<-read.csv(text=North.URL)
+
+South.URL <- getURL("https://raw.githubusercontent.com/Monsauce/Rewiring-a-changing-world/master/SHemisphereTemp.csv")
+South<-read.csv(text=South.URL)
 
 North.mean<-subset(North, select = c(Year, J.D))
 colnames(North.mean)[2] <- "North.Temp"
@@ -36,7 +39,9 @@ Hemispheres.plot<-ggplot(Hemispheres, aes(x = Year, y = Temperature, colour=Hemi
 
 ####Global temperature####
 #Read in data
-Global<-read.csv("GlobalTemp.csv", stringsAsFactors = FALSE)
+Global.URL <- getURL("https://raw.githubusercontent.com/Monsauce/Rewiring-a-changing-world/master/GlobalTemp.csv")
+Global<-read.csv(text=Global.URL, stringsAsFactors = FALSE)
+
 Global.mean<-subset(Global, select = c(Year, J.D))
 
 #take out anomolies
@@ -50,7 +55,8 @@ Global.plot<-ggplot(Global.mean, aes(x = Year, y = J.D))+geom_line()+
 
 ####Lake temperature profile####
 #read in Pine lake data 
-TempProf<-read.csv("TempProfile.csv")
+TempProf.URL <- getURL("https://raw.githubusercontent.com/Monsauce/Rewiring-a-changing-world/master/TempProfile.csv")
+TempProf<-read.csv(text=TempProf.URL)
 
 Profile.plot<-ggplot(TempProf, aes(x = Temp, y = Depth))+geom_line()+
   xlab("Temperature (C)")+ylab("Depth (m)")+theme_classic()+
