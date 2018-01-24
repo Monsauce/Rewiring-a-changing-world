@@ -142,9 +142,6 @@ BartonHeights$Treatment<-c("Control", "Control", "Control", "Warmed", "Warmed", 
 colnames(BartonHeights)[1]<-"Horizontal"
 colnames(BartonHeights)[2]<-"Vertical"
 
-write.csv(BartonHeights, "BartonHeights.csv")
-BartonHeights<-read.csv("BartonHeights.csv")
-
 Fig3B.plot<-ggplot(BartonHeights, aes(x = Horizontal, y = Vertical))+geom_point(aes(colour=Treatment, shape=Species, size=2))+
   xlab("Horizonal distance (cm)")+ylab("Vertical height (cm)")+theme_classic()+
   theme(panel.border=element_rect(colour="black",fill=NA))+
@@ -174,7 +171,6 @@ BartonGrasshopper<-rbind(BartonVermontDigital, BartonCTDigital, BartonNJDigital)
 colnames(BartonGrasshopper)[1]<-"Temp"
 colnames(BartonGrasshopper)[2]<-"Feeding"
 
-write.csv(BartonGrasshopper, "BartonGrasshopper.csv")
 
 Fig3C.plot<-ggplot(BartonGrasshopper, aes(x = Temp, y = Feeding))+geom_point(aes(colour=State))+
   xlab(expression("Max temperature"*~degree*C))+ylab("Feeding time (min)")+theme_classic()+
@@ -205,9 +201,6 @@ BartonBiomassDigitalControl<-BartonBiomassDigitalControl[-(1)]
 
 #merge DF
 BartonBiomassDigital<-rbind(BartonBiomassDigitalWarmed, BartonBiomassDigitalControl)
-
-write.csv(BartonBiomassDigital, "BartonBiomassDigital.csv")
-BartonBiomassDigital<-read.csv("BartonBiomassDigital.csv")
 
 #make Fig3D
 Fig3D.plot<-ggplot(BartonBiomassDigital, aes(x=Structure, y=Biomass))+
